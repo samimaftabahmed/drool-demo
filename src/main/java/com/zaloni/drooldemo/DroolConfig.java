@@ -1,10 +1,12 @@
 package com.zaloni.drooldemo;
 
+import bitronix.tm.resource.jdbc.PoolingDataSource;
 import org.kie.api.KieServices;
 import org.kie.api.builder.*;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.internal.io.ResourceFactory;
+import org.springframework.boot.jta.bitronix.PoolingDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -47,6 +49,19 @@ public class DroolConfig {
     public KieSession getKieSession() {
         System.out.println("session created");
         return getKieContainer().newKieSession();
+    }
+
+    public PoolingDataSource getPoolingDS() {
+        PoolingDataSource ds = new PoolingDataSource();
+        ds.setUniqueName("jdbc/BitronixJTADataSource");
+        ds.setClassName("org.h2.jdbcx.JdbcDataSource");
+        ds.setMaxPoolSize(3);
+        ds.setAllowLocalTransactions(true);
+        ds.getDriverProperties().put("user", "root");
+        ds.getDriverProperties().put("password", "1234");
+        ds.getDriverProperties().put("URL", "jdbc:mysql://localhost:3306/drool_demo");
+        ds.init();
+        return ds;
     }
 
 }

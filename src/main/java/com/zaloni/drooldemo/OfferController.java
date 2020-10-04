@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class OfferController {
 
     @Autowired
-    private KieSession session;
+    private KieSession kieSession;
 
     @PostMapping("/order")
     public Order order(@RequestBody Order order) {
-        session.insert(order);
-        session.fireAllRules();
+        kieSession.insert(order);
+        kieSession.fireAllRules();
         return order;
     }
 }
