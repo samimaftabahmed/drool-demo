@@ -36,7 +36,7 @@ public class DroolConfig {
         return kieContainer.newKieSession();
     }
 
-//    @Bean(name = "persistentSession")
+    @Bean(name = "persistentSession")
     public KieSession getPersistentKieSession() {
 
         Environment env = kieServices.newEnvironment();
@@ -57,7 +57,7 @@ public class DroolConfig {
         return kieSession;
     }
 
-//    @Bean
+    @Bean
     public PoolingDataSource getPoolingDS() {
         PoolingDataSource ds = new PoolingDataSource();
         ds.setUniqueName("jdbc/BitronixJTADataSource");

@@ -19,7 +19,7 @@ public class OfferController {
     private KieSession kieSession;
 
     @Autowired
-//    @Qualifier("persistentSession")
+    @Qualifier("persistentSession")
     private KieSession persistentSession;
 
     @GetMapping("/order/{card-type}/{price}")
