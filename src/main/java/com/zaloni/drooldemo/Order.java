@@ -7,6 +7,11 @@ public class Order {
     private int discount;
     private int price;
 
+    public Order(String cardType, int price) {
+        this.cardType = cardType;
+        this.price = price;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -37,5 +42,15 @@ public class Order {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "name='" + name + '\'' +
+                ", cardType='" + cardType + '\'' +
+                ", discount=" + discount +
+                ", price=" + price +
+                '}';
     }
 }
